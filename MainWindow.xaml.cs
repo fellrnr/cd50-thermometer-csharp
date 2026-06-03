@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.WPF;
-using SkiaSharp;
+using OxyPlot;
+using OxyPlot.Series;
+using OxyPlot.Axes;
 
 namespace TemperatureMonitor
 {
@@ -17,10 +14,12 @@ namespace TemperatureMonitor
         private CD50Thermometer? _thermometer;
         private bool _isPolling;
         private CancellationTokenSource? _pollingCts;
-        private ObservableCollection<double> _channel1Data = new();
-        private ObservableCollection<double> _channel2Data = new();
-        private ObservableCollection<double> _channel3Data = new();
-        private ObservableCollection<double> _channel4Data = new();
+        private List<double> _channel1Data = new();
+        private List<double> _channel2Data = new();
+        private List<double> _channel3Data = new();
+        private List<double> _channel4Data = new();
+        private PlotModel? _plotModel;
+        private int _dataPointCount = 0;
         private const int MaxDataPoints = 120; // Keep 120 data points (2 minutes at 500ms intervals)
 
         public MainWindow()
@@ -31,48 +30,45 @@ namespace TemperatureMonitor
 
         private void InitializeChart()
         {
-            var series = new ISeries[]
+            _plotModel = new PlotModel { Title = "" };
+            _plotModel.Background = OxyColors.White;
+
+            // X-Axis
+            var xAxis = new LinearAxis
             {
-                new LineSeries<double> 
-                { 
-                    Values = _channel1Data,
-                    Stroke = new SolidColorPaint(SKColor.Parse("#E74C3C")) { StrokeThickness = 2 },
-                    Fill = new SolidColorPaint(SKColor.Parse("#E74C3C")) { Alpha = 50 },
-                    Name = "Channel 1",
-                    GeometrySize = 0
-                },
-                new LineSeries<double> 
-                { 
-                    Values = _channel2Data,
-                    Stroke = new SolidColorPaint(SKColor.Parse("#F39C12")) { StrokeThickness = 2 },
-                    Fill = new SolidColorPaint(SKColor.Parse("#F39C12")) { Alpha = 50 },
-                    Name = "Channel 2",
-                    GeometrySize = 0
-                },
-                new LineSeries<double> 
-                { 
-                    Values = _channel3Data,
-                    Stroke = new SolidColorPaint(SKColor.Parse("#27AE60")) { StrokeThickness = 2 },
-                    Fill = new SolidColorPaint(SKColor.Parse("#27AE60")) { Alpha = 50 },
-                    Name = "Channel 3",
-                    GeometrySize = 0
-                },
-                new LineSeries<double> 
-                { 
-                    Values = _channel4Data,
-                    Stroke = new SolidColorPaint(SKColor.Parse("#3498DB")) { StrokeThickness = 2 },
-                    Fill = new SolidColorPaint(SKColor.Parse("#3498DB")) { Alpha = 50 },
-                    Name = "Channel 4",
-                    GeometrySize = 0
-                }
+                Position = AxisPosition.Bottom,
+                Title = "Time (seconds)",
+                Minimum = 0,
+                Maximum = MaxDataPoints / 2, // 60 seconds at 500ms intervals
+                MajorGridlineStyle = LineStyle.Solid,
+                MajorGridlineColor = OxyColor.FromRgb(200, 200, 200)
             };
+            _plotModel.Axes.Add(xAxis);
 
-            var xAxes = new[] { new Axis { MaxLimit = MaxDataPoints } };
-            var yAxes = new[] { new Axis { MinLimit = -50, MaxLimit = 150 } };
+            // Y-Axis
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Temperature (°C)",
+                Minimum = -50,
+                Maximum = 150,
+                MajorGridlineStyle = LineStyle.Solid,
+                MajorGridlineColor = OxyColor.FromRgb(200, 200, 200)
+            };
+            _plotModel.Axes.Add(yAxis);
 
-            TemperatureChart.Series = series;
-            TemperatureChart.XAxes = xAxes;
-            TemperatureChart.YAxes = yAxes;
+            // Create line series for each channel
+            var series1 = new LineSeries { Title = "Channel 1", Color = OxyColor.FromRgb(231, 76, 60), StrokeThickness = 2 };
+            var series2 = new LineSeries { Title = "Channel 2", Color = OxyColor.FromRgb(243, 156, 18), StrokeThickness = 2 };
+            var series3 = new LineSeries { Title = "Channel 3", Color = OxyColor.FromRgb(39, 174, 96), StrokeThickness = 2 };
+            var series4 = new LineSeries { Title = "Channel 4", Color = OxyColor.FromRgb(52, 152, 219), StrokeThickness = 2 };
+
+            _plotModel.Series.Add(series1);
+            _plotModel.Series.Add(series2);
+            _plotModel.Series.Add(series3);
+            _plotModel.Series.Add(series4);
+
+            TemperatureChart.Model = _plotModel;
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -196,17 +192,48 @@ namespace TemperatureMonitor
             AddDataPoint(_channel3Data, temperatures[2]);
             AddDataPoint(_channel4Data, temperatures[3]);
 
+            // Update chart
+            UpdateChart();
+
             // Update timestamp
             UpdateTimestamp.Text = $"Last update: {DateTime.Now:yyyy-MM-dd HH:mm:ss}";
         }
 
-        private void AddDataPoint(ObservableCollection<double> collection, double value)
+        private void AddDataPoint(List<double> collection, double value)
         {
             collection.Add(value);
             if (collection.Count > MaxDataPoints)
             {
                 collection.RemoveAt(0);
             }
+        }
+
+        private void UpdateChart()
+        {
+            if (_plotModel == null) return;
+
+            // Clear existing points
+            foreach (var series in _plotModel.Series)
+            {
+                if (series is LineSeries lineSeries)
+                    lineSeries.Points.Clear();
+            }
+
+            // Add new points
+            List<double>[] datasets = { _channel1Data, _channel2Data, _channel3Data, _channel4Data };
+            for (int i = 0; i < datasets.Length; i++)
+            {
+                var lineSeries = _plotModel.Series[i] as LineSeries;
+                if (lineSeries != null)
+                {
+                    for (int j = 0; j < datasets[i].Count; j++)
+                    {
+                        lineSeries.Points.Add(new DataPoint(j * 0.5, datasets[i][j])); // 0.5 seconds per point
+                    }
+                }
+            }
+
+            _plotModel.InvalidatePlot(true);
         }
 
         private string FormatTemperature(double temp)
@@ -238,6 +265,9 @@ namespace TemperatureMonitor
             _channel2Data.Clear();
             _channel3Data.Clear();
             _channel4Data.Clear();
+            _dataPointCount = 0;
+
+            UpdateChart();
         }
     }
 }
