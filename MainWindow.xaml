@@ -1,7 +1,7 @@
 <Window x:Class="TemperatureMonitor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        xmlns:oxy="http://oxyplot.org/wpf"
         Title="CD50 Temperature Monitor" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
@@ -98,10 +98,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Temperature History" FontSize="14" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
-                    <lvc:CartesianChart Grid.Row="1" x:Name="TemperatureChart" 
-                                       Series="{Binding Series}" 
-                                       XAxes="{Binding XAxes}" 
-                                       YAxes="{Binding YAxes}"/>
+                    <oxy:PlotView Grid.Row="1" x:Name="TemperatureChart" Model="{Binding PlotModel}"/>
                 </Grid>
             </Border>
         </Grid>
