@@ -12,39 +12,43 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <StackPanel Grid.Row="0" Background="#2C3E50" Padding="15">
-            <TextBlock Text="CD50 USB Thermometer Monitor" FontSize="24" FontWeight="Bold" Foreground="White"/>
-            <TextBlock Text="4-Channel Temperature Display with Real-time Graph" FontSize="12" Foreground="#BDC3C7" Margin="0,5,0,0"/>
-        </StackPanel>
+        <Border Grid.Row="0" Background="#2C3E50" Padding="15">
+            <StackPanel>
+                <TextBlock Text="CD50 USB Thermometer Monitor" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="4-Channel Temperature Display with Real-time Graph" FontSize="12" Foreground="#BDC3C7" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
 
         <!-- Control Panel -->
-        <Grid Grid.Row="1" Background="#ECF0F1" Padding="15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Background="#ECF0F1" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="COM Port:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
-            <TextBox x:Name="PortTextBox" Grid.Column="1" Text="COM7" VerticalAlignment="Center" Padding="5"/>
+                <TextBlock Grid.Column="0" Text="COM Port:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
+                <TextBox x:Name="PortTextBox" Grid.Column="1" Text="COM7" VerticalAlignment="Center" Padding="5"/>
 
-            <TextBlock Grid.Column="2" Text="Status:" VerticalAlignment="Center" Margin="20,0,10,0" FontWeight="Bold"/>
-            <TextBlock x:Name="StatusTextBlock" Grid.Column="3" Text="Disconnected" VerticalAlignment="Center" Foreground="#E74C3C" FontWeight="Bold"/>
+                <TextBlock Grid.Column="2" Text="Status:" VerticalAlignment="Center" Margin="20,0,10,0" FontWeight="Bold"/>
+                <TextBlock x:Name="StatusTextBlock" Grid.Column="3" Text="Disconnected" VerticalAlignment="Center" Foreground="#E74C3C" FontWeight="Bold"/>
 
-            <Button Grid.Column="4" x:Name="ConnectButton" Content="Connect" Click="ConnectButton_Click" 
-                    Background="#27AE60" Foreground="White" Padding="12,8" Margin="10,0" FontWeight="Bold" Cursor="Hand"/>
-            <Button Grid.Column="5" x:Name="DisconnectButton" Content="Disconnect" Click="DisconnectButton_Click" 
-                    Background="#E74C3C" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
-            <Button Grid.Column="6" x:Name="StartButton" Content="Start" Click="StartButton_Click" 
-                    Background="#3498DB" Foreground="White" Padding="12,8" Margin="10,0,5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
-            <Button Grid.Column="7" x:Name="PauseButton" Content="Pause" Click="PauseButton_Click" 
-                    Background="#F39C12" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
-        </Grid>
+                <Button Grid.Column="4" x:Name="ConnectButton" Content="Connect" Click="ConnectButton_Click" 
+                        Background="#27AE60" Foreground="White" Padding="12,8" Margin="10,0" FontWeight="Bold" Cursor="Hand"/>
+                <Button Grid.Column="5" x:Name="DisconnectButton" Content="Disconnect" Click="DisconnectButton_Click" 
+                        Background="#E74C3C" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
+                <Button Grid.Column="6" x:Name="StartButton" Content="Start" Click="StartButton_Click" 
+                        Background="#3498DB" Foreground="White" Padding="12,8" Margin="10,0,5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
+                <Button Grid.Column="7" x:Name="PauseButton" Content="Pause" Click="PauseButton_Click" 
+                        Background="#F39C12" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
+            </Grid>
+        </Border>
 
         <!-- Main Content -->
         <Grid Grid.Row="2">
@@ -54,41 +58,43 @@
             </Grid.ColumnDefinitions>
 
             <!-- Digital Gauges Panel -->
-            <StackPanel Grid.Column="0" Background="White" Margin="10" Padding="15">
-                <TextBlock Text="Channel Readings" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,15"/>
-                
-                <!-- Channel 1 -->
-                <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
-                    <StackPanel>
-                        <TextBlock Text="Channel 1" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                        <TextBlock x:Name="Channel1Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Border>
+            <Border Grid.Column="0" Background="White" Margin="10" Padding="15" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Channel Readings" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,15"/>
+                    
+                    <!-- Channel 1 -->
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                        <StackPanel>
+                            <TextBlock Text="Channel 1" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel1Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
 
-                <!-- Channel 2 -->
-                <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
-                    <StackPanel>
-                        <TextBlock Text="Channel 2" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                        <TextBlock x:Name="Channel2Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#F39C12" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Border>
+                    <!-- Channel 2 -->
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                        <StackPanel>
+                            <TextBlock Text="Channel 2" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel2Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#F39C12" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
 
-                <!-- Channel 3 -->
-                <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
-                    <StackPanel>
-                        <TextBlock Text="Channel 3" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                        <TextBlock x:Name="Channel3Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#27AE60" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Border>
+                    <!-- Channel 3 -->
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                        <StackPanel>
+                            <TextBlock Text="Channel 3" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel3Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#27AE60" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
 
-                <!-- Channel 4 -->
-                <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" CornerRadius="5" Background="#F8F9FA">
-                    <StackPanel>
-                        <TextBlock Text="Channel 4" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                        <TextBlock x:Name="Channel4Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#3498DB" Margin="0,5,0,0"/>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    <!-- Channel 4 -->
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" CornerRadius="5" Background="#F8F9FA">
+                        <StackPanel>
+                            <TextBlock Text="Channel 4" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel4Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#3498DB" Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
 
             <!-- Temperature Graph -->
             <Border Grid.Column="1" Background="White" Margin="10" Padding="10" CornerRadius="5">
