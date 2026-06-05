@@ -24,7 +24,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -34,13 +34,16 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="COM Port:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
-                <TextBox x:Name="PortTextBox" Grid.Column="1" Text="COM7" VerticalAlignment="Center" Padding="5"/>
+                <ComboBox x:Name="PortComboBox" Grid.Column="1" VerticalAlignment="Center" Padding="5" SelectionChanged="PortComboBox_SelectionChanged" IsEditable="False"/>
 
                 <TextBlock Grid.Column="2" Text="Status:" VerticalAlignment="Center" Margin="20,0,10,0" FontWeight="Bold"/>
-                <TextBlock x:Name="StatusTextBlock" Grid.Column="3" Text="Disconnected" VerticalAlignment="Center" Foreground="#E74C3C" FontWeight="Bold"/>
+                <StackPanel Grid.Column="3" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Ellipse x:Name="StatusIndicator" Width="12" Height="12" Fill="#E74C3C" Margin="0,0,10,0"/>
+                    <TextBlock x:Name="StatusTextBlock" Text="Scanning..." VerticalAlignment="Center" Foreground="#E74C3C" FontWeight="Bold"/>
+                </StackPanel>
 
                 <Button Grid.Column="4" x:Name="ConnectButton" Content="Connect" Click="ConnectButton_Click" 
-                        Background="#27AE60" Foreground="White" Padding="12,8" Margin="10,0" FontWeight="Bold" Cursor="Hand"/>
+                        Background="#27AE60" Foreground="White" Padding="12,8" Margin="10,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
                 <Button Grid.Column="5" x:Name="DisconnectButton" Content="Disconnect" Click="DisconnectButton_Click" 
                         Background="#E74C3C" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
                 <Button Grid.Column="6" x:Name="StartButton" Content="Start" Click="StartButton_Click" 

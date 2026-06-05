@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Axes;
@@ -19,13 +21,89 @@ namespace TemperatureMonitor
         private List<double> _channel3Data = new();
         private List<double> _channel4Data = new();
         private PlotModel? _plotModel;
-        private int _dataPointCount = 0;
         private const int MaxDataPoints = 120; // Keep 120 data points (2 minutes at 500ms intervals)
+        private bool _isAutoConnecting = false;
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeChart();
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            _isAutoConnecting = true;
+            UpdateStatus("Scanning for thermometer...", "#F39C12");
+            await ScanForThermometer();
+            _isAutoConnecting = false;
+        }
+
+        private async Task ScanForThermometer()
+        {
+            await Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    PortComboBox.Items.Clear();
+                    string[] availablePorts = CD50Thermometer.GetAvailablePorts();
+                    foreach (var port in availablePorts)
+                    {
+                        PortComboBox.Items.Add(port);
+                    }
+                });
+
+                // Try to find a thermometer
+                string? foundPort = CD50Thermometer.FindAvailablePort();
+
+                Dispatcher.Invoke(() =>
+                {
+                    if (foundPort != null)
+                    {
+                        PortComboBox.SelectedItem = foundPort;
+                        AutoConnectToThermometer(foundPort);
+                    }
+                    else
+                    {
+                        if (PortComboBox.Items.Count > 0)
+                        {
+                            PortComboBox.SelectedIndex = 0;
+                            UpdateStatus("No thermometer found. Select a port manually.", "#E74C3C");
+                            ConnectButton.IsEnabled = true;
+                        }
+                        else
+                        {
+                            UpdateStatus("No COM ports available", "#E74C3C");
+                        }
+                    }
+                });
+            });
+        }
+
+        private void AutoConnectToThermometer(string port)
+        {
+            try
+            {
+                _thermometer = new CD50Thermometer(port);
+                if (_thermometer.Connect())
+                {
+                    UpdateStatus($"Connected to {port}", "#27AE60");
+                    ConnectButton.IsEnabled = false;
+                    DisconnectButton.IsEnabled = true;
+                    StartButton.IsEnabled = true;
+                    PortComboBox.IsEnabled = false;
+                    
+                    // Auto-start polling
+                    StartPolling();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Auto-connect failed: {ex.Message}");
+                UpdateStatus("Connection failed", "#E74C3C");
+                ConnectButton.IsEnabled = true;
+                PortComboBox.IsEnabled = true;
+            }
         }
 
         private void InitializeChart()
@@ -39,7 +117,7 @@ namespace TemperatureMonitor
                 Position = AxisPosition.Bottom,
                 Title = "Time (seconds)",
                 Minimum = 0,
-                Maximum = MaxDataPoints / 2, // 60 seconds at 500ms intervals
+                Maximum = MaxDataPoints / 2,
                 MajorGridlineStyle = LineStyle.Solid,
                 MajorGridlineColor = OxyColor.FromRgb(200, 200, 200)
             };
@@ -71,25 +149,33 @@ namespace TemperatureMonitor
             TemperatureChart.Model = _plotModel;
         }
 
+        private void PortComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (!_isAutoConnecting && PortComboBox.SelectedItem != null)
+            {
+                ConnectButton.IsEnabled = true;
+            }
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string port = PortTextBox.Text.Trim();
-                if (string.IsNullOrEmpty(port))
+                if (PortComboBox.SelectedItem == null)
                 {
-                    MessageBox.Show("Please enter a COM port name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please select a COM port.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
+                string port = PortComboBox.SelectedItem.ToString();
                 _thermometer = new CD50Thermometer(port);
                 if (_thermometer.Connect())
                 {
-                    UpdateStatus("Connected", "#27AE60");
+                    UpdateStatus($"Connected to {port}", "#27AE60");
                     ConnectButton.IsEnabled = false;
                     DisconnectButton.IsEnabled = true;
                     StartButton.IsEnabled = true;
-                    PortTextBox.IsEnabled = false;
+                    PortComboBox.IsEnabled = false;
                 }
             }
             catch (Exception ex)
@@ -116,7 +202,7 @@ namespace TemperatureMonitor
                 DisconnectButton.IsEnabled = false;
                 StartButton.IsEnabled = false;
                 PauseButton.IsEnabled = false;
-                PortTextBox.IsEnabled = true;
+                PortComboBox.IsEnabled = true;
 
                 ClearDisplays();
             }
@@ -134,6 +220,11 @@ namespace TemperatureMonitor
                 return;
             }
 
+            StartPolling();
+        }
+
+        private void StartPolling()
+        {
             _isPolling = true;
             _pollingCts = new CancellationTokenSource();
             StartButton.IsEnabled = false;
@@ -228,7 +319,7 @@ namespace TemperatureMonitor
                 {
                     for (int j = 0; j < datasets[i].Count; j++)
                     {
-                        lineSeries.Points.Add(new DataPoint(j * 0.5, datasets[i][j])); // 0.5 seconds per point
+                        lineSeries.Points.Add(new DataPoint(j * 0.5, datasets[i][j]));
                     }
                 }
             }
@@ -239,18 +330,23 @@ namespace TemperatureMonitor
         private string FormatTemperature(double temp)
         {
             if (temp > 280)
-                return "---.-°C"; // Sensor error or not connected
+                return "---.-°C";
             return $"{temp:F1}°C";
         }
 
         private void UpdateStatus(string status, string color)
         {
             StatusTextBlock.Text = status;
-            // Parse color hex and set foreground
-            if (color == "#27AE60")
-                StatusTextBlock.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0x27, 0xAE, 0x60));
-            else
-                StatusTextBlock.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0xE7, 0x4C, 0x3C));
+            StatusIndicator.Fill = new SolidColorBrush(ConvertHexToColor(color));
+        }
+
+        private Color ConvertHexToColor(string hexColor)
+        {
+            hexColor = hexColor.Replace("#", string.Empty);
+            byte r = Convert.ToByte(hexColor.Substring(0, 2), 16);
+            byte g = Convert.ToByte(hexColor.Substring(2, 2), 16);
+            byte b = Convert.ToByte(hexColor.Substring(4, 2), 16);
+            return Color.FromRgb(r, g, b);
         }
 
         private void ClearDisplays()
@@ -265,7 +361,6 @@ namespace TemperatureMonitor
             _channel2Data.Clear();
             _channel3Data.Clear();
             _channel4Data.Clear();
-            _dataPointCount = 0;
 
             UpdateChart();
         }

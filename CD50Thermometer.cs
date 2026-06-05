@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO.Ports;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Threading.Task;
 
 namespace TemperatureMonitor
 {
@@ -23,6 +25,49 @@ namespace TemperatureMonitor
         {
             _port = port;
             Connected = false;
+        }
+
+        /// <summary>
+        /// Scans all available COM ports and returns the port that responds correctly to the thermometer protocol
+        /// </summary>
+        public static string? FindAvailablePort()
+        {
+            // Get all available COM ports
+            string[] ports = SerialPort.GetPortNames();
+            
+            if (ports.Length == 0)
+                return null;
+
+            // Try each port
+            foreach (string port in ports)
+            {
+                try
+                {
+                    using (var thermometer = new CD50Thermometer(port))
+                    {
+                        if (thermometer.Connect())
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Found thermometer on port: {port}");
+                            return port;
+                        }
+                    }
+                }
+                catch
+                {
+                    // Port doesn't have a thermometer, continue scanning
+                    continue;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get all available COM ports
+        /// </summary>
+        public static string[] GetAvailablePorts()
+        {
+            return SerialPort.GetPortNames().OrderBy(p => p).ToArray();
         }
 
         /// <summary>
