@@ -1,0 +1,847 @@
+[26/06/2026 10:54:05] 
+1 IRP_MJ_CREATE - Opens a COM port (COM10) 
+    STATUS_SUCCESS 
+        Opened by: 
+            C:\Program Files (x86)\EnvironmentalTester\EnvironmentalTester.exe 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+3 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_BAUD_RATE - Returns the baud rate that is currently set for a COM port 
+            BaudRate - 4800 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+5 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_LINE_CONTROL - Request returns information about the line control set for a COM port 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+7 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_CHARS - Request returns the special characters that Serial uses with handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+9 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_HANDFLOW - Request returns information about the configuration of the handshake flow control set for a COM port 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+11 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_BAUD_RATE - Returns the baud rate that is currently set for a COM port 
+            BaudRate - 4800 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+13 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_LINE_CONTROL - Request returns information about the line control set for a COM port 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+15 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_CHARS - Request returns the special characters that Serial uses with handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+17 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_HANDFLOW - Request returns information about the configuration of the handshake flow control set for a COM port 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+19 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_BAUD_RATE - Request sets the baud rate on a COM port. Serial verifies the specified baud rate 
+            BaudRate - 9600 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+21 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_RTS - Request clears the RTS control signal  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+23 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_DTR - Request clears the DTR control signal.  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+25 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_LINE_CONTROL - Request sets the line control register 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+27 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_CHARS - Request sets the special characters that Serial uses for handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+29 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_HANDFLOW - Request sets the configuration of handshake flow control 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+31 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_TIMEOUTS - Returns the timeout values that Serial uses with read and write requests 
+            ReadIntervalTimeout         - -1 
+            ReadTotalTimeoutMultiplier  - -1 
+            ReadTotalTimeoutConstant    - 70 
+            WriteTotalTimeoutMultiplier - 0 
+            WriteTotalTimeoutConstant   - 70 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+33 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_TIMEOUTS - Request sets the timeout value's that the driver uses with read and write requests 
+            ReadIntervalTimeout         - -1 
+            ReadTotalTimeoutMultiplier  - 0 
+            ReadTotalTimeoutConstant    - 0 
+            WriteTotalTimeoutMultiplier - 0 
+            WriteTotalTimeoutConstant   - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+35 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_WAIT_MASK - Request configures Serial to notify a client after the occurrence of any one of a specified set of wait events 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+38 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:54:05] 
+40 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+42 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 00 03 02                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+43 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+45 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 9 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 00 07 64 02 5e 01 cb                        Uª..d.^.Ë        
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+47 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+49 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+51 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:36] 
+53 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+55 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_CANCELLED 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+57 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_BAUD_RATE - Returns the baud rate that is currently set for a COM port 
+            BaudRate - 9600 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+59 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_LINE_CONTROL - Request returns information about the line control set for a COM port 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+61 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_CHARS - Request returns the special characters that Serial uses with handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+63 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_HANDFLOW - Request returns information about the configuration of the handshake flow control set for a COM port 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+65 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_BAUD_RATE - Request sets the baud rate on a COM port. Serial verifies the specified baud rate 
+            BaudRate - 4800 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+67 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_RTS - Request clears the RTS control signal  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+69 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_DTR - Request clears the DTR control signal.  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+71 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_LINE_CONTROL - Request sets the line control register 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+73 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_CHARS - Request sets the special characters that Serial uses for handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+75 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_HANDFLOW - Request sets the configuration of handshake flow control 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+77 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_TIMEOUTS - Request sets the timeout value's that the driver uses with read and write requests 
+            ReadIntervalTimeout         - -1 
+            ReadTotalTimeoutMultiplier  - -1 
+            ReadTotalTimeoutConstant    - 70 
+            WriteTotalTimeoutMultiplier - 0 
+            WriteTotalTimeoutConstant   - 70 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+79 IRP_MJ_CLOSE - Close a COM port (COM10) 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+81 IRP_MJ_CREATE - Opens a COM port (COM10) 
+    STATUS_SUCCESS 
+        Opened by: 
+            C:\Program Files (x86)\EnvironmentalTester\EnvironmentalTester.exe 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+83 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_BAUD_RATE - Returns the baud rate that is currently set for a COM port 
+            BaudRate - 4800 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+85 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_LINE_CONTROL - Request returns information about the line control set for a COM port 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+87 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_CHARS - Request returns the special characters that Serial uses with handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+89 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_HANDFLOW - Request returns information about the configuration of the handshake flow control set for a COM port 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+91 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_BAUD_RATE - Returns the baud rate that is currently set for a COM port 
+            BaudRate - 4800 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+93 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_LINE_CONTROL - Request returns information about the line control set for a COM port 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+95 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_CHARS - Request returns the special characters that Serial uses with handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+97 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_HANDFLOW - Request returns information about the configuration of the handshake flow control set for a COM port 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+99 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_BAUD_RATE - Request sets the baud rate on a COM port. Serial verifies the specified baud rate 
+            BaudRate - 9600 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+101 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_RTS - Request clears the RTS control signal  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+103 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_CLR_DTR - Request clears the DTR control signal.  
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+105 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_LINE_CONTROL - Request sets the line control register 
+            StopBits   - 0 (1 stop bit) 
+            Parity     - 0 (NO_PARITY) 
+            WordLength - 8 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+107 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_CHARS - Request sets the special characters that Serial uses for handshake flow control 
+            EofChar   - 26 
+            ErrorChar - 0 
+            BreakChar - 0 
+            EventChar - 0 
+            XonChar   - 17 
+            XoffChar  - 19 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+109 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_HANDFLOW - Request sets the configuration of handshake flow control 
+            ControlHandShake - 0x00  
+            FlowReplace      - 0x00  
+            XonLimit         - 34412 
+            XoffLimit        - 8603 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+111 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_TIMEOUTS - Returns the timeout values that Serial uses with read and write requests 
+            ReadIntervalTimeout         - -1 
+            ReadTotalTimeoutMultiplier  - -1 
+            ReadTotalTimeoutConstant    - 70 
+            WriteTotalTimeoutMultiplier - 0 
+            WriteTotalTimeoutConstant   - 70 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+113 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_TIMEOUTS - Request sets the timeout value's that the driver uses with read and write requests 
+            ReadIntervalTimeout         - -1 
+            ReadTotalTimeoutMultiplier  - 0 
+            ReadTotalTimeoutConstant    - 0 
+            WriteTotalTimeoutMultiplier - 0 
+            WriteTotalTimeoutConstant   - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+115 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_SET_WAIT_MASK - Request configures Serial to notify a client after the occurrence of any one of a specified set of wait events 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+118 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:55:42] 
+120 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+122 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+123 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+125 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+127 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+129 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+131 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:03] 
+133 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+136 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+137 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+139 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+141 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+143 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+145 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:04] 
+147 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+150 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+151 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+153 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+155 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+157 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+159 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:05] 
+161 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+164 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+165 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+167 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+169 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+171 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+173 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:06] 
+175 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+178 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+179 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+181 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+183 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+185 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+187 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:07] 
+189 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+192 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+193 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+195 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+197 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+199 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:08] 
+201 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+203 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+206 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+207 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+209 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+211 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+213 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+215 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:09] 
+217 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+220 IRP_MJ_WRITE - Request transfers data from a client to a COM port (COM10) - 5 bytes of 5 
+    STATUS_SUCCESS 
+            aa 55 01 03 03                                    ªU...            
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+221 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+223 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 13 bytes of 512 
+    STATUS_SUCCESS 
+            55 aa 01 0b 60 6d 60 6d 60 6d ee 00 60            Uª..`m`m`mî.`    
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+225 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+227 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_WAIT_ON_MASK - Request is used to wait for the occurrence of any wait event specified by using an IOCTL_SERIAL_SET_WAIT_MASK request 
+            Mask - 0x00000001 (EV_RXCHAR) 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+229 IRP_MJ_READ - Transfers data from a COM port to a client (COM10) - 0 bytes of 512 
+    STATUS_SUCCESS 
+---------------------------------------------------------------------------------- 
+[26/06/2026 10:56:10] 
+231 IRP_MJ_DEVICE_CONTROL - Request operates a serial port (COM10) 
+    STATUS_SUCCESS 
+        IOCTL_SERIAL_GET_COMMSTATUS - Request returns information about the communication status of a COM port 
+            Errors           - 0 
+            HoldReasons      - 0 
+            AmountInInQueue  - 0 
+            AmountInOutQueue - 0 
+            EofReceived      - 0 
+            WaitForImmediate - 0 
+---------------------------------------------------------------------------------- 

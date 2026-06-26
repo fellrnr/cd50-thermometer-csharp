@@ -24,6 +24,12 @@ namespace TemperatureMonitor
         private const int MaxDataPoints = 120; // Keep 120 data points (2 minutes at 500ms intervals)
         private bool _isAutoConnecting = false;
 
+        public enum WindowPosition
+        {
+            TopHalf,
+            BottomHalf
+        }
+        private readonly WindowPosition _position = WindowPosition.BottomHalf; // Change this to WindowPosition.TopHalf if you want the window to appear in the top half of the screen
         public MainWindow()
         {
             InitializeComponent();
@@ -33,10 +39,39 @@ namespace TemperatureMonitor
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            SetPosition(sender, e);
             _isAutoConnecting = true;
             UpdateStatus("Scanning for thermometer...", "#F39C12");
             await ScanForThermometer();
             _isAutoConnecting = false;
+        }
+
+        private void SetPosition(object sender, RoutedEventArgs e)
+        {
+            var workArea = SystemParameters.WorkArea;
+
+            // Screen containing the window
+            //var screen = Screen.FromHandle(new System.Windows.Interop.WindowInteropHelper(this).Handle);
+
+            //var workArea = screen.WorkingArea;
+
+            double halfHeight = workArea.Height / 2.0;
+
+            WindowStartupLocation = WindowStartupLocation.Manual;
+
+            Left = workArea.Left;
+            Width = workArea.Width;
+
+            if (_position == WindowPosition.TopHalf)
+            {
+                Top = workArea.Top;
+                Height = halfHeight;
+            }
+            else
+            {
+                Top = workArea.Top + halfHeight;
+                Height = workArea.Height - halfHeight;
+            }
         }
 
         private async Task ScanForThermometer()
@@ -167,7 +202,12 @@ namespace TemperatureMonitor
                     return;
                 }
 
-                string port = PortComboBox.SelectedItem.ToString();
+                string? port = PortComboBox.SelectedItem.ToString();
+                if(string.IsNullOrEmpty(port))
+                {
+                    MessageBox.Show("Invalid COM port selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 _thermometer = new CD50Thermometer(port);
                 if (_thermometer.Connect())
                 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using System.Threading.Task;
+//using System.Threading.Task;
 
 namespace TemperatureMonitor
 {
@@ -77,12 +77,18 @@ namespace TemperatureMonitor
         {
             try
             {
+
                 _serialPort = new SerialPort(_port, 9600, Parity.None, 8, StopBits.One)
                 {
                     ReadTimeout = 1000,
                     WriteTimeout = 1000
                 };
+                //_serialPort.XonChar = (char)0x11;
+                //_serialPort.XoffChar = (char)0x13;
                 _serialPort.Open();
+                //_serialPort.RtsEnable = false; //default
+                //_serialPort.
+
 
                 // Send initialization command
                 byte[] initMessage = new byte[_host2DeviceHeader.Length + _connectCommand.Length];
@@ -93,7 +99,8 @@ namespace TemperatureMonitor
 
                 // Read and verify response
                 byte[] response = new byte[9];
-                int bytesRead = _serialPort.Read(response, 0, 9);
+                //int bytesRead = _serialPort.Read(response, 0, 9);
+                int bytesRead = ReadBytes(9, response);
 
                 if (bytesRead == 9 && response[0] == _device2HostHeader[0] && response[1] == _device2HostHeader[1])
                 {
@@ -108,10 +115,19 @@ namespace TemperatureMonitor
                         return true;
                     }
                     else
+                    {
                         throw new InvalidOperationException("Checksum mismatch on connection response!");
+                    }
                 }
                 else
-                    throw new InvalidOperationException("Invalid response from device!");
+                {
+                    if (_serialPort != null && _serialPort.IsOpen)
+                    {
+                        _serialPort.Close();
+                        _serialPort.Dispose();
+                    }
+                    throw new InvalidOperationException($"Invalid response from device! {bytesRead} bytes received");
+                }
             }
             catch (Exception ex)
             {
@@ -140,7 +156,8 @@ namespace TemperatureMonitor
 
                 // Read response (13 bytes)
                 byte[] response = new byte[13];
-                int bytesRead = _serialPort.Read(response, 0, 13);
+                //  int bytesRead = _serialPort.Read(response, 0, 13);
+                int bytesRead = ReadBytes(13, response);
 
                 if (bytesRead == 13 && response[0] == _device2HostHeader[0] && response[1] == _device2HostHeader[1])
                 {
@@ -168,7 +185,7 @@ namespace TemperatureMonitor
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("Invalid response from temperature read!");
+                    System.Diagnostics.Debug.WriteLine($"Invalid response from temperature read! {bytesRead} bytes received");
                     return null;
                 }
             }
@@ -183,6 +200,36 @@ namespace TemperatureMonitor
                 return null;
             }
         }
+
+        private int ReadBytes(int size, byte[] response)
+        {
+            if(_serialPort == null)
+                throw new InvalidOperationException("Serial port is not initialized.");
+
+            int bytesRead = 0;
+
+            try
+            {
+                // Loop until we have exactly 9 bytes
+                while (bytesRead < size)
+                {
+                    int remaining = size - bytesRead;
+                    // This blocks until data arrives or ReadTimeout occurs
+                    int count = _serialPort.Read(response, bytesRead, remaining);
+                    bytesRead += count;
+                }
+                
+            }
+            catch (TimeoutException te)
+            {
+                throw te;
+            }
+
+            //int bytesRead = _serialPort.Read(response, 0, count);
+
+            return bytesRead;
+        }
+
 
         /// <summary>
         /// Disconnect from the device
