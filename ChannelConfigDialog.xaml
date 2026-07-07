@@ -1,0 +1,77 @@
+﻿<Window x:Class="TemperatureMonitor.ChannelConfigDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Channel Names" Height="350" Width="400"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="Configure Channel Names" FontSize="16" FontWeight="Bold" 
+                   Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+        <!-- Channel List -->
+        <StackPanel Grid.Row="1">
+            <!-- Channel 1 -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Channel 1:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Width="80"/>
+                <TextBox x:Name="Channel1TextBox" Grid.Column="1" Padding="8" 
+                         Background="White" BorderBrush="#BDC3C7" BorderThickness="1"/>
+            </Grid>
+
+            <!-- Channel 2 -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Channel 2:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Width="80"/>
+                <TextBox x:Name="Channel2TextBox" Grid.Column="1" Padding="8" 
+                         Background="White" BorderBrush="#BDC3C7" BorderThickness="1"/>
+            </Grid>
+
+            <!-- Channel 3 -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Channel 3:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Width="80"/>
+                <TextBox x:Name="Channel3TextBox" Grid.Column="1" Padding="8" 
+                         Background="White" BorderBrush="#BDC3C7" BorderThickness="1"/>
+            </Grid>
+
+            <!-- Channel 4 -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Channel 4:" VerticalAlignment="Center" 
+                           FontWeight="Bold" Width="80"/>
+                <TextBox x:Name="Channel4TextBox" Grid.Column="1" Padding="8" 
+                         Background="White" BorderBrush="#BDC3C7" BorderThickness="1"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Name="OkButton" Content="OK" Click="OkButton_Click" 
+                    Background="#27AE60" Foreground="White" Padding="20,8" FontWeight="Bold" Cursor="Hand"/>
+            <Button Name="CancelButton" Content="Cancel" Click="CancelButton_Click" 
+                    Background="#E74C3C" Foreground="White" Padding="20,8" FontWeight="Bold" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>

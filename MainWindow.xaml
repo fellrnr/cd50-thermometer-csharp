@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:oxy="http://oxyplot.org/wpf"
-        Title="CD50 Temperature Monitor" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="CD50 Temperature Monitor 260706-1423" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,8 +31,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
                 <TextBlock Grid.Column="0" Text="COM Port:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Bold"/>
                 <ComboBox x:Name="PortComboBox" Grid.Column="1" VerticalAlignment="Center" Padding="5" SelectionChanged="PortComboBox_SelectionChanged" IsEditable="False"/>
 
@@ -50,6 +50,8 @@
                         Background="#3498DB" Foreground="White" Padding="12,8" Margin="10,0,5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
                 <Button Grid.Column="7" x:Name="PauseButton" Content="Pause" Click="PauseButton_Click" 
                         Background="#F39C12" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand" IsEnabled="False"/>
+                <Button Grid.Column="8" x:Name="EditConfigButton" Content="Edit Config" Click="EditConfigButton_Click" 
+        Background="#9B59B6" Foreground="White" Padding="12,8" Margin="5,0" FontWeight="Bold" Cursor="Hand"/>
             </Grid>
         </Border>
 
@@ -61,39 +63,43 @@
             </Grid.ColumnDefinitions>
 
             <!-- Digital Gauges Panel -->
-            <Border Grid.Column="0" Background="White" Margin="10" Padding="15" CornerRadius="5">
+            <Border Grid.Column="0" Background="White" Margin="10" Padding="5" CornerRadius="5">
                 <StackPanel>
                     <TextBlock Text="Channel Readings" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,15"/>
-                    
+
                     <!-- Channel 1 -->
-                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="5" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
                         <StackPanel>
-                            <TextBlock Text="Channel 1" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                            <TextBlock x:Name="Channel1Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel1Label" Text="Channel 1" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel1Text" Text="--.-°C" FontSize="26" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel1Delta" Text="Δ60s:-0.2 Δ120s:+0.0" FontSize="16" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Channel 2 -->
-                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="5" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
                         <StackPanel>
-                            <TextBlock Text="Channel 2" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
-                            <TextBlock x:Name="Channel2Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#F39C12" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel2Label" Text="Channel 2" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel2Text" Text="--.-°C" FontSize="26" FontWeight="Bold" Foreground="#F39C12" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel2Delta" Text="Δ60s:-0.2 Δ120s:+0.0" FontSize="16" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Channel 3 -->
-                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="5" Margin="0,0,0,10" CornerRadius="5" Background="#F8F9FA">
                         <StackPanel>
-                            <TextBlock Text="Channel 3" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel3Label" Text="Channel 3" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
                             <TextBlock x:Name="Channel3Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#27AE60" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel3Delta" Text="Δ60s:-0.2 Δ120s:+0.0" FontSize="16" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Channel 4 -->
-                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="10" CornerRadius="5" Background="#F8F9FA">
+                    <Border BorderBrush="#BDC3C7" BorderThickness="1" Padding="5" CornerRadius="5" Background="#F8F9FA">
                         <StackPanel>
-                            <TextBlock Text="Channel 4" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
+                            <TextBlock x:Name="Channel4Label" Text="Channel 4" FontSize="12" FontWeight="Bold" Foreground="#34495E"/>
                             <TextBlock x:Name="Channel4Text" Text="--.-°C" FontSize="28" FontWeight="Bold" Foreground="#3498DB" Margin="0,5,0,0"/>
+                            <TextBlock x:Name="Channel4Delta" Text="Δ60s:-0.2 Δ120s:+0.0" FontSize="16" FontWeight="Bold" Foreground="#E74C3C" Margin="0,5,0,0"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -104,10 +110,11 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="79*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Temperature History" FontSize="14" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
-                    <oxy:PlotView Grid.Row="1" x:Name="TemperatureChart" Model="{Binding PlotModel}"/>
+                    <oxy:PlotView Grid.Row="1" x:Name="TemperatureChart" Model="{Binding PlotModel}" Grid.RowSpan="2"/>
                 </Grid>
             </Border>
         </Grid>

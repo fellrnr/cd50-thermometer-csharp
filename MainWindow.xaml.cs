@@ -21,8 +21,10 @@ namespace TemperatureMonitor
         private List<double> _channel3Data = new();
         private List<double> _channel4Data = new();
         private PlotModel? _plotModel;
-        private const int MaxDataPoints = 120; // Keep 120 data points (2 minutes at 500ms intervals)
+        //private const int MaxDataPoints = 120; // Keep 120 data points (2 minutes at 500ms intervals)
+        private const int MaxDataPoints = 60*60*2; // Keep data points (60 minutes at 500ms intervals)
         private bool _isAutoConnecting = false;
+        private ChannelConfig _channelConfig = new();
 
         public enum WindowPosition
         {
@@ -33,8 +35,11 @@ namespace TemperatureMonitor
         public MainWindow()
         {
             InitializeComponent();
+            _channelConfig = ChannelConfig.Load();
             InitializeChart();
             this.Loaded += MainWindow_Loaded;
+            UpdateChannelLabels();
+            ClearDisplays();
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -163,23 +168,42 @@ namespace TemperatureMonitor
             {
                 Position = AxisPosition.Left,
                 Title = "Temperature (°C)",
-                Minimum = -50,
-                Maximum = 150,
+                Minimum = 20,
+                Maximum = 55,
                 MajorGridlineStyle = LineStyle.Solid,
                 MajorGridlineColor = OxyColor.FromRgb(200, 200, 200)
             };
             _plotModel.Axes.Add(yAxis);
 
-            // Create line series for each channel
-            var series1 = new LineSeries { Title = "Channel 1", Color = OxyColor.FromRgb(231, 76, 60), StrokeThickness = 2 };
-            var series2 = new LineSeries { Title = "Channel 2", Color = OxyColor.FromRgb(243, 156, 18), StrokeThickness = 2 };
-            var series3 = new LineSeries { Title = "Channel 3", Color = OxyColor.FromRgb(39, 174, 96), StrokeThickness = 2 };
-            var series4 = new LineSeries { Title = "Channel 4", Color = OxyColor.FromRgb(52, 152, 219), StrokeThickness = 2 };
+            var colors = new[]
+            {
+                OxyColor.Parse("#E74C3C"),
+                OxyColor.Parse("#F39C12"),
+                OxyColor.Parse("#27AE60"),
+                OxyColor.Parse("#3498DB")
+            };
 
-            _plotModel.Series.Add(series1);
-            _plotModel.Series.Add(series2);
-            _plotModel.Series.Add(series3);
-            _plotModel.Series.Add(series4);
+            for (int i = 0; i < 4; i++)
+            {
+                var series = new LineSeries
+                {
+                    Title = _channelConfig.GetChannelName(i + 1),
+                    Color = colors[i],
+                    StrokeThickness = 2,
+                };
+                _plotModel.Series.Add(series);
+            }
+
+            //// Create line series for each channel
+            //var series1 = new LineSeries { Title = "Channel 1", Color = OxyColor.FromRgb(231, 76, 60), StrokeThickness = 2 };
+            //var series2 = new LineSeries { Title = "Channel 2", Color = OxyColor.FromRgb(243, 156, 18), StrokeThickness = 2 };
+            //var series3 = new LineSeries { Title = "Channel 3", Color = OxyColor.FromRgb(39, 174, 96), StrokeThickness = 2 };
+            //var series4 = new LineSeries { Title = "Channel 4", Color = OxyColor.FromRgb(52, 152, 219), StrokeThickness = 2 };
+
+            //_plotModel.Series.Add(series1);
+            //_plotModel.Series.Add(series2);
+            //_plotModel.Series.Add(series3);
+            //_plotModel.Series.Add(series4);
 
             TemperatureChart.Model = _plotModel;
         }
@@ -309,13 +333,48 @@ namespace TemperatureMonitor
             }
         }
 
+
+        private TemperatureDeltaCalculator[] _deltaCalculators = new TemperatureDeltaCalculator[4]
+        {
+            new TemperatureDeltaCalculator(TimeSpan.FromMinutes(10)),
+            new TemperatureDeltaCalculator(TimeSpan.FromMinutes(10)),
+            new TemperatureDeltaCalculator(TimeSpan.FromMinutes(10)),
+            new TemperatureDeltaCalculator(TimeSpan.FromMinutes(10))
+        };
+
         private void UpdateDisplays(double[] temperatures)
         {
+            for(int i = 0; i < 4; i++)
+            {
+                _deltaCalculators[i].AddReading(temperatures[i]);
+            }
+
+            string[] deltas = new string[4];
+            for (int i = 0; i < 4; i++)
+            {
+                // compute deltas for common periods
+                var d30 = _deltaCalculators[i].GetDeltaSeconds(30);
+                var d60 = _deltaCalculators[i].GetDeltaSeconds(60);
+                var d120 = _deltaCalculators[i].GetDeltaSeconds(120);
+
+                // Append deltas to the equivalent temperature display.
+                // Format: "ResultMessage (Δ30s:+0.1C Δ60s:-0.2C Δ120s:+0.0C)"
+                string deltaText = "";
+                //if (d30.HasValue) deltaText += $" Δ30s:{d30.Value:+0.0;-0.0;0.0}C";
+                if (d60.HasValue) deltaText += $" Δ60s:{d60.Value: +0.0;-0.0;0.0}C";
+                if (d120.HasValue) deltaText += $" Δ120s:{d120.Value: +0.0;-0.0;0.0}C";
+                deltas[i] = deltaText;
+            }
+
             // Update digital displays
             Channel1Text.Text = FormatTemperature(temperatures[0]);
+            Channel1Delta.Text = deltas[0];
             Channel2Text.Text = FormatTemperature(temperatures[1]);
+            Channel2Delta.Text = deltas[1];
             Channel3Text.Text = FormatTemperature(temperatures[2]);
+            Channel3Delta.Text = deltas[2];
             Channel4Text.Text = FormatTemperature(temperatures[3]);
+            Channel4Delta.Text = deltas[3];
 
             // Add to graph data (keep only MaxDataPoints)
             AddDataPoint(_channel1Data, temperatures[0]);
@@ -391,6 +450,7 @@ namespace TemperatureMonitor
 
         private void ClearDisplays()
         {
+
             Channel1Text.Text = "--.-°C";
             Channel2Text.Text = "--.-°C";
             Channel3Text.Text = "--.-°C";
@@ -403,6 +463,30 @@ namespace TemperatureMonitor
             _channel4Data.Clear();
 
             UpdateChart();
+        }
+
+
+        private void EditConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new ChannelConfigDialog(_channelConfig)
+            {
+                Owner = this
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                _channelConfig = ChannelConfig.Load();
+                UpdateChannelLabels();
+                InitializeChart();
+            }
+        }
+
+        private void UpdateChannelLabels()
+        {
+            Channel1Label.Text = _channelConfig.GetChannelName(1);
+            Channel2Label.Text = _channelConfig.GetChannelName(2);
+            Channel3Label.Text = _channelConfig.GetChannelName(3);
+            Channel4Label.Text = _channelConfig.GetChannelName(4);
         }
     }
 }
